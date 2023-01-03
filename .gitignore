@@ -139,6 +139,7 @@ dmypy.json
 
 # production
 /build
+/frontend_demo
 
 # misc
 .DS_Store
