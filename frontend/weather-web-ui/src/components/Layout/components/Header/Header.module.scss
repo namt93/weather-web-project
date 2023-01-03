@@ -1,5 +1,4 @@
 .header {
-    background-color: #ccc;
     width: 100%;
     height: var(--header-height);
 }
@@ -9,5 +8,96 @@
     left: 208px;
     top: 20px;
     height: 60px;
-    background-color: #ccc;
+}
+
+.header > .header-content {
+    position: fixed;
+    left: 208px;
+    top: 20px;
+}
+
+.header-content .header-greating {
+    font-size: 16px;
+    font-weight: 550;
+    color: var(--black-color);
+}
+
+.header-content .greating-description {
+    font-size: 16px;
+    margin-top: 8px;
+    color: #ccc;
+}
+
+.header-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 18px;
+    left: 500px;
+    padding-top: 8px;
+}
+
+.search-bar .search-input {
+    height: 34px;
+    width: 356px;
+    border-radius: 16px;
+    padding: 8px;
+    padding-right: 16px;
+    padding-left: 28px;
+}
+
+.btn-search {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: fixed;
+    left: 507px;
+    top: 34px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    color: #ccc;
+}
+
+.search-input:focus-visible {
+    outline: none;
+    border: 1px solid;
+    border-color: var(--main-color);
+}
+
+.header-dropdown {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 24px;
+    right: 290px;
+    transform: translateX(+320%);
+}
+
+.header-dropdown .notification-btn,
+.header-dropdown .user-btn {
+    background-color: rgb(227, 227, 227);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    float: right;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header-dropdown .notification-btn:hover,
+.header-dropdown .user-btn:hover {
+    background-color: var(--main-color);
+    color: var(--white-color);
+}
+
+.header-dropdown .notification-btn {
+    transform: translateX(-50%) translateY(+2%);
+}
+
+.header-dropdown .user-btn {
+    display: flex;
+    transform: translateY(+2%);
 }
