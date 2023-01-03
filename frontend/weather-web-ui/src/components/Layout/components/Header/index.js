@@ -18,7 +18,13 @@ function Header() {
             {/* Search section */}
             <div className={cx('header-search')}>
                 <div className={cx('search-bar')}>
-                    <input type="text" className={cx('search-input')} name="search" placeholder="search" />
+                    <input
+                        type="text"
+                        className={cx('search-input')}
+                        name="search"
+                        placeholder="search"
+                        spellCheck={false}
+                    />
                     <button type="submit" className={cx('btn-search')}>
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
