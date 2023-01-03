@@ -1,0 +1,13 @@
+.header {
+    background-color: #ccc;
+    width: 100%;
+    height: var(--header-height);
+}
+
+.header > .header-content {
+    position: fixed;
+    left: 208px;
+    top: 20px;
+    height: 60px;
+    background-color: #ccc;
+}

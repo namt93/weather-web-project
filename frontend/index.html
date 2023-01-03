@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Main css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- themify icon link -->
+    <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
+
+    <!-- Font awesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+    <!-- weather icon link -->
+    <link rel="stylesheet" href="./assets/fonts/weather-icons-master/css/weather-icons-wind.css">
+    <link rel="stylesheet" href="./assets/fonts/weather-icons-master/css/weather-icons.min.css">
+    
+    <!-- grid.css library link -->
+    <link rel="stylesheet" href="./assets/css/grid.css">
+</head>
+<body>
+    <div id="main">
+
+        <!-- Sidebar section -->
+        <div class="sidebar-section">
+
+            <nav class="sidebar">
+                <h3 class="sidebar__heading">
+                    <i class="sidebar__heading-icon wi wi-day-cloudy"></i>
+                    <div class="name-app">Wanru</div>
+                </h3>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item sidebar-item--active">
+                        <div class="sidebar-content">
+                            <i class="sidebar-item-icon fas fa-th-large"></i>
+                            <a href="#" class="sidebar-item__link">Dashboard</a>
+                        </div>
+                    </li>
+                    <li class="sidebar-item">
+                        <div class="sidebar-content">
+                            <i class="sidebar-item-icon fas fa-calendar-alt"></i>
+                            <a href="" class="sidebar-item__link">Calendar</a>
+                        </div>
+                    </li>
+                    <li class="sidebar-item">
+                        <div class="sidebar-content">
+                            <i class="sidebar-item-icon fas fa-cog"></i>
+                            <a href="" class="sidebar-item__link">Setting</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="grid-container">
+            <div class="container">
+                    <div class="main-dashboard-section fixed-l-11 fixed-col-l-o-2">
+                            <!-- Main dashboard section -->
+                            <div id="header">
+                                <!-- Greating section -->
+                                <div class="header-content fixed-l-3">
+                                    <h2 class="header-greating">January 2022</h2>
+                                    <p class="greating-description">Thursday, Jan 4 2022</p>
+                                </div>
+                    
+                                <!-- Search section -->
+                                <div class="header-search .fixed-l-4 .fixed-col-l-o-3">
+                                    <div class="search-bar">
+                                        <input type="text" class="search-input" name="search" placeholder="search">
+                                        <button type="submit" class="btn btn-search fa fa-search"></button>
+                                    </div>
+                                </div>
+                    
+                                <!-- Dropdown section -->
+                                <div class="header-dropdown .fixed-l-2">
+                                    <div class="notification-btn">
+                                        <i class="notification-icon ti-bell"></i>
+                                    </div>
+                    
+                                    <div class="user-btn">
+                                        <i class="user-icon ti-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        <div id="content">
+                            <!-- Overview section -->
+                            <div class="grid-container overview-section row">
+                                <h1 class="overview-greating">Today's overview</h1>
+                                <div class="grid-item overview-item">
+                                    <i class="grid-icon wi wi-cloudy-gusts"></i>
+                                    <div class="grid-item-content">
+                                        <div class="property-name">
+                                            Wind speed
+                                        </div>
+                                        <div class="property-value"></div>
+
+                                    </div>
+                                </div>
+                                <div class="grid-item overview-item">
+                                    <i class="grid-icon wi wi-humidity"></i>
+                                    <div class="grid-item-content">
+                                        <div class="property-name">
+                                            Humidity
+                                        </div>
+                                        <div class="property-value"></div>
+                                    </div>
+                                </div>
+                                <div class="grid-item overview-item">
+                                    <i class="grid-icon wi wi-thermometer"></i>
+                                    <div class="grid-item-content">
+                                        <div class="property-name">
+                                            Feels like
+                                        </div>
+                                        <div class="property-value"></div>
+                                    </div>
+                                </div>
+                                <div class="grid-item overview-item">
+                                    <i class="grid-icon wi wi-rain"></i>
+                                    <div class="grid-item-content">
+                                        <div class="property-name">
+                                            Rain intensity
+                                        </div>
+                                        <div class="property-value"></div>
+                                    </div>
+                                </div>
+                                <div class="grid-item overview-item">
+                                    <i class="grid-icon fas fa-water"></i>
+                                    <div class="grid-item-content">
+                                        <div class="property-name">
+                                            Pressure
+                                        </div>
+                                        <div class="property-value"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div id="navigation">
+
+        </div>
+
+ 
+
+
+        <div id="footer">
+
+        </div>
+    </div>
+</body>
+</html>

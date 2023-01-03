@@ -1,0 +1,31 @@
+@import 'normalize.css';
+
+/* Global CSS variables */
+:root {
+    --main-color: rgb(36, 139, 242);
+    --white-color: #fff;
+    --black-color: #000;
+
+    // Default layout
+    --header-height: 88px;
+    --font-size: 16px;
+
+    // Sidebar
+    --sidebar-width: 178px;
+}
+
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+}
