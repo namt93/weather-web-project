@@ -18,7 +18,7 @@
 
 .header-content .header-greating {
     font-size: 16px;
-    font-weight: 550;
+    font-weight: var(--bold-font-weight);
     color: var(--black-color);
 }
 
@@ -79,8 +79,15 @@
 
 .header-actions {
     position: fixed;
-    top: 32px;
+    top: 26px;
     right: 132px;
+}
+
+.more-btn {
+    font-size: 20px;
+    padding: 4px 12px;
+    padding-left: 22px;
+    background-color: transparent;
 }
 
 .header-dropdown {

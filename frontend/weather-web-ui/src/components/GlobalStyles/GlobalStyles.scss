@@ -10,6 +10,7 @@
     // Default layout
     --header-height: 88px;
     --font-size: 16px;
+    --bold-font-weight: 550;
 
     // Sidebar
     --sidebar-width: 178px;
@@ -36,4 +37,9 @@ input,
 [tabindex] {
     outline: none;
     border: none;
+}
+
+a[href] {
+    color: var(--black-color);
+    text-decoration: none;
 }
