@@ -23,6 +23,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
 import { faMoon } from '@fortawesome/free-regular-svg-icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -158,7 +159,7 @@ function Header() {
                 )}
                 <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                     {currentUser ? (
-                        <img
+                        <Image
                             className={cx('user-avatar')}
                             src="https://yt3.ggpht.com/yti/AJo0G0moP2iN4Ri8AEWfM2AFQNZq6nLl9EPQKGtqu_FK=s88-c-k-c0x00ffffff-no-rj-mo"
                             alt="NBlacKK"
@@ -170,21 +171,6 @@ function Header() {
                     )}
                 </Menu>
             </div>
-
-            {/* Dropdown section */}
-            {/* <div className={cx('header-dropdown')}>
-                <div className={cx('notification-btn')}>
-                    <i className={cx('notification-icon')}>
-                        <FontAwesomeIcon icon={faBell} />
-                    </i>
-                </div>
-
-                <div className={cx('user-btn')}>
-                    <i className={cx('user-icon')}>
-                        <FontAwesomeIcon icon={faUser} />
-                    </i>
-                </div>
-            </div> */}
         </div>
     );
 }
