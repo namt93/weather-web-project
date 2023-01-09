@@ -77,7 +77,10 @@
     border-color: var(--main-color);
 }
 
+// Actions
 .header-actions {
+    display: flex;
+    align-items: center;
     position: fixed;
     top: 26px;
     right: 132px;
@@ -88,6 +91,24 @@
     padding: 4px 12px;
     padding-left: 22px;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.action-btn {
+    font-size: 20px;
+    background-color: transparent;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+
+    margin-left: 16px;
+
+    border-radius: 50%;
     cursor: pointer;
 }
 
