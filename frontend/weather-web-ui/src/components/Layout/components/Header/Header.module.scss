@@ -41,6 +41,7 @@
 .search-bar .search-input,
 .search-result {
     width: 356px;
+    background-color: #eee;
 }
 
 .search-title {
@@ -65,8 +66,8 @@
     position: fixed;
     left: 507px;
     top: 34px;
-    border: 1px solid #fff;
-    background-color: #fff;
+    border: 1px solid #eee;
+    background-color: #eee;
     color: #ccc;
 }
 
@@ -74,6 +75,12 @@
     outline: none;
     border: 1px solid;
     border-color: var(--main-color);
+}
+
+.header-actions {
+    position: fixed;
+    top: 32px;
+    right: 132px;
 }
 
 .header-dropdown {

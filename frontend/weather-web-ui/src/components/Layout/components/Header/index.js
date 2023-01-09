@@ -4,6 +4,7 @@ import { faBell, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react/headless';
 
+import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Poper';
 import AccountItem from '~/components/AccountItem';
@@ -15,7 +16,7 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([1, 2, 3]);
+            setSearchResult([]);
         }, 0);
     });
 
@@ -59,8 +60,13 @@ function Header() {
                 </div>
             </Tippy>
 
+            <div className={cx('header-actions')}>
+                <Button text>Upload</Button>
+                <Button primary>Log in</Button>
+            </div>
+
             {/* Dropdown section */}
-            <div className={cx('header-dropdown')}>
+            {/* <div className={cx('header-dropdown')}>
                 <div className={cx('notification-btn')}>
                     <i className={cx('notification-icon')}>
                         <FontAwesomeIcon icon={faBell} />
@@ -72,7 +78,7 @@ function Header() {
                         <FontAwesomeIcon icon={faUser} />
                     </i>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
