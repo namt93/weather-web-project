@@ -22,7 +22,7 @@ function Sidebar() {
                             <i className={cx('sidebar-item-icon')}>
                                 <FontAwesomeIcon icon={faThLarge} />
                             </i>
-                            <a href="#" className={cx('sidebar-item__link')}>
+                            <a href="/" className={cx('sidebar-item__link')}>
                                 Dashboard
                             </a>
                         </div>
@@ -32,7 +32,7 @@ function Sidebar() {
                             <i className={cx('sidebar-item-icon')}>
                                 <FontAwesomeIcon icon={faCalendar} />
                             </i>
-                            <a href="" className={cx('sidebar-item__link')}>
+                            <a href="/calendar" className={cx('sidebar-item__link')}>
                                 Calendar
                             </a>
                         </div>
@@ -42,7 +42,7 @@ function Sidebar() {
                             <i className={cx('sidebar-item-icon')}>
                                 <FontAwesomeIcon icon={faCog} />
                             </i>
-                            <a href="" className={cx('sidebar-item__link')}>
+                            <a href="/setting" className={cx('sidebar-item__link')}>
                                 Setting
                             </a>
                         </div>

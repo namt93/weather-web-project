@@ -11,7 +11,7 @@ import Search from '~/pages/Search';
 const publicRoutes = [
     { path: '/', component: Dashboard },
     { path: '/calendar', component: Calendar },
-    { path: '/setting', component: Setting, layout: HeaderOnly },
+    { path: '/setting', component: Setting },
     { path: '/search', component: Search, layout: null },
 ];
 
