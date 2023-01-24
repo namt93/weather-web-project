@@ -4,17 +4,17 @@ from .. import models, schemas, utils, oauth2
 from ..database import get_db
 
 router = APIRouter(
-        prefix="/stations",
+        prefix="/api/stations",
         tags=['Stations']
 )
 
 @router.post("/", status_code = status.HTTP_201_CREATED, response_model=schemas.StationOut)
-def create_station(station: schemas.StationCreate, db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
+def create_station(station: schemas.StationCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # hash the password - station.password
     hashed_password = utils.hash(str(station.password))
     station.password = hashed_password
 
-    new_station = models.Station(**station.dict())
+    new_station = models.Station(user_id=current_user.user_id, **station.dict())
     db.add(new_station)
     db.commit()
     db.refresh(new_station)

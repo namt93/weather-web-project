@@ -4,7 +4,7 @@ from .. import models, schemas, utils, oauth2
 from ..database import get_db
 
 router = APIRouter(
-        prefix="/users",
+        prefix="/api/users",
         tags=['users']
 )
 
@@ -24,16 +24,16 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
 @router.get("/{id}", response_model=schemas.UserOut)
 def get_user(id: int, db: Session = Depends(get_db)):
-    user = db.query(models.User).filter(models.User.id==id).first()
+    user = db.query(models.User).filter(models.User.user_id==id).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"user with id: {id} does not exist" )
     return user
 
 # Delete user
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_user(id: int, db: Session = Depends(get_db), current_admin: int = Depends(oauth2.get_current_admin)):
+def delete_user(id: int, db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
 
-    user = db.query(models.User).filter(models.User.id == id)
+    user = db.query(models.User).filter(models.User.user_id == id)
 
     if user.first() == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"user with id: {id} does not exist")
@@ -45,8 +45,8 @@ def delete_user(id: int, db: Session = Depends(get_db), current_admin: int = Dep
 
 # update user
 @router.put("/{id}", response_model=schemas.UserOut)
-def update_user(id: int, updated_user: schemas.UserBase, db: Session = Depends(get_db), current_admin: int = Depends(oauth2.get_current_admin)):
-    user_query = db.query(models.User).filter(models.User.id == id)
+def update_user(id: int, updated_user: schemas.UserBase, db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
+    user_query = db.query(models.User).filter(models.User.user_id == id)
     user = user_query.first()
 
     # check the existence of user

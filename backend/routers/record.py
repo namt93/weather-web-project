@@ -5,7 +5,7 @@ from .. import models, schemas, utils, oauth2
 from ..database import get_db
 
 router = APIRouter(
-        prefix="/records",
+        prefix="/api/records",
         tags=['Records']
 )
 
@@ -61,7 +61,7 @@ def get_records_by_station_id(station_id: int, db: Session = Depends(get_db)):
 
 # Get the latest record of station
 @router.get("/latest/station/{station_id}", response_model=schemas.Record)
-def get_records_by_station_id(station_id: int, db: Session = Depends(get_db)):
+def get_latest_records_by_station_id(station_id: int, db: Session = Depends(get_db)):
     latest_record = db.query(models.Record).filter(models.Record.station_id == station_id).all()[-1]
     return latest_record
 
