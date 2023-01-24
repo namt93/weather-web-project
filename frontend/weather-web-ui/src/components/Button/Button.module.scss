@@ -39,7 +39,7 @@
     background-color: var(--main-color);
 
     &:hover {
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), rgb(52, 133, 214);
+        opacity: 0.9;
     }
 }
 

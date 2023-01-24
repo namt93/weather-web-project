@@ -3,19 +3,14 @@
     height: var(--header-height);
     background-color: var(--white-color);
     position: fixed;
+    left: var(--sidebar-width);
 }
 
 .header > .header-content {
-    position: fixed;
-    left: 208px;
+    position: absolute;
+    left: 20px;
     top: 20px;
     height: 60px;
-}
-
-.header > .header-content {
-    position: fixed;
-    left: 208px;
-    top: 20px;
 }
 
 // Greating

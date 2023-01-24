@@ -8,8 +8,9 @@
     width: 1150px;
     min-height: 1000px;
     background-color: #eee;
+    padding: var(--header-height) calc(var(--sidebar-width) / 2);
 }
 
 .container .content {
-    padding: 100px 100px;
+    // padding: 100px 100px;
 }
