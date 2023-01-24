@@ -36,9 +36,22 @@
     position: absolute;
     right: 10px;
     top: 50%;
-    transform: translateY(-26%);
+    transform: translateY(-20%);
 
     cursor: pointer;
+}
+
+.loading {
+    animation: spinner 0.7s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: translateY(-20%) rotate(0);
+    }
+    to {
+        transform: translateY(-20%) rotate(360deg);
+    }
 }
 
 .btn-search {

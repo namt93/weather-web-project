@@ -7,20 +7,16 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-function AccountItem() {
+function AccountItem({ data }) {
     return (
         <div className={cx('wrapper')}>
-            <Image
-                className={cx('avatar')}
-                src="https://scontent.fhan19-1.fna.fbcdn.net/v/t1.6435-9/82910604_1246605468870186_3947465074083364864_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=XwVtHAlbFrIAX9R6SoE&_nc_ht=scontent.fhan19-1.fna&oh=00_AfBgxrIB6EzqR5ECkWyqKfWFKJbsnJr5gca8r-jcs29ETw&oe=63DB8014"
-                alt="Van"
-            />
+            <Image className={cx('avatar')} src={data.user_avatar} alt={data.username} />
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
-                    <span>Nguyen Van</span>
+                    <span>{data.username}</span>
                     <FontAwesomeIcon className={cx('check-icon')} icon={faCheckCircle} />
                 </h4>
-                <span className={cx('username')}>nguyenvan</span>
+                <span className={cx('username')}>{data.username}</span>
             </div>
         </div>
     );
