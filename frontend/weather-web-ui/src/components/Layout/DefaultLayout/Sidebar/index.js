@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faCloudSun, faCog, fas, faThLarge } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 import styles from './Sidebar.module.scss';
 
@@ -18,34 +19,34 @@ function Sidebar() {
                 </h3>
                 <ul className={cx('sidebar-menu')}>
                     <li className={cx('sidebar-item sidebar-item--active')}>
-                        <div className={cx('sidebar-content')}>
-                            <i className={cx('sidebar-item-icon')}>
-                                <FontAwesomeIcon icon={faThLarge} />
-                            </i>
-                            <a href="/" className={cx('sidebar-item__link')}>
+                        <Link to="/" className={cx('sidebar-item__link')}>
+                            <div className={cx('sidebar-content')}>
+                                <i className={cx('sidebar-item-icon')}>
+                                    <FontAwesomeIcon icon={faThLarge} />
+                                </i>
                                 Dashboard
-                            </a>
-                        </div>
+                            </div>
+                        </Link>
                     </li>
                     <li className={cx('sidebar-item')}>
-                        <div className={cx('sidebar-content')}>
-                            <i className={cx('sidebar-item-icon')}>
-                                <FontAwesomeIcon icon={faCalendar} />
-                            </i>
-                            <a href="/calendar" className={cx('sidebar-item__link')}>
+                        <Link to="/calendar" className={cx('sidebar-item__link')}>
+                            <div className={cx('sidebar-content')}>
+                                <i className={cx('sidebar-item-icon')}>
+                                    <FontAwesomeIcon icon={faCalendar} />
+                                </i>
                                 Calendar
-                            </a>
-                        </div>
+                            </div>
+                        </Link>
                     </li>
                     <li className={cx('sidebar-item')}>
-                        <div className={cx('sidebar-content')}>
-                            <i className={cx('sidebar-item-icon')}>
-                                <FontAwesomeIcon icon={faCog} />
-                            </i>
-                            <a href="/setting" className={cx('sidebar-item__link')}>
+                        <Link to="/setting" className={cx('sidebar-item__link')}>
+                            <div className={cx('sidebar-content')}>
+                                <i className={cx('sidebar-item-icon')}>
+                                    <FontAwesomeIcon icon={faCog} />
+                                </i>
                                 Setting
-                            </a>
-                        </div>
+                            </div>
+                        </Link>
                     </li>
                 </ul>
             </nav>
