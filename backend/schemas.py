@@ -6,11 +6,15 @@ from typing import Optional
 class RecordBase(BaseModel):
     temperature: float
     humidity: int
-    wind_speed: float
+    wind_direction: int
+    average_wind_speed: float
+    max_wind_speed: float
+    barometric_pressure: float
 
 class RecordCreate(RecordBase):
     station_id: int
     password: str
+
 
 class Record(RecordBase):
     record_id: int
@@ -22,11 +26,18 @@ class Record(RecordBase):
 
 # Weather Station schemas
 class StationCreate(BaseModel):
-    station_id: int
     password: str
+    station_name: str
+    station_position: str
+    longitude: Optional[str] = None
+    latitude: Optional[str] = None
 
 class StationOut(BaseModel):
     station_id: int
+    station_name: str
+    station_position: str
+    created_at: datetime
+    user_id: int
 
     class Config:
         orm_mode = True
@@ -43,12 +54,11 @@ class UserCreate(BaseModel):
     
 class UserBase(BaseModel):
     username: str
-    role: str
     email: EmailStr
     password: str
 
 class UserOut(BaseModel):
-    id: int
+    user_id: int
     username: str
     email: EmailStr
     created_at: datetime
