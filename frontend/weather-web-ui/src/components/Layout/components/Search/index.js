@@ -5,6 +5,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { useDebounce } from '~/hooks';
 import AccountItem from '~/components/AccountItem';
 import styles from './Search.module.scss';
 
@@ -18,14 +19,17 @@ function Search() {
 
     const inputRef = useRef();
 
+    const searchDelayDebounce = 800;
+    const searchValueDebounced = useDebounce(searchValue, searchDelayDebounce);
+
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!searchValueDebounced.trim()) {
             setSearchResult([]);
             return;
         }
 
         setLoading(true);
-        fetch(`http://localhost:8000/api/search?q=${encodeURIComponent(searchValue)}`)
+        fetch(`http://localhost:8000/api/search?q=${encodeURIComponent(searchValueDebounced)}`)
             .then((res) => res.json())
             .then((res) => {
                 setSearchResult(res.data);
@@ -34,7 +38,7 @@ function Search() {
             .catch(() => {
                 setLoading(false);
             });
-    }, [searchValue]);
+    }, [searchValueDebounced]);
 
     const handleClear = () => {
         setSearchValue('');
