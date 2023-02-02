@@ -1,39 +1,48 @@
-.wrapper {
-    background-color: var(--main-color);
-    color: var(--white-color);
-    position: fixed;
-    height: 100%;
-    left: 0;
-    width: var(--sidebar-width);
-    // box-shadow: 3px 0px 5px 1px rgba(36, 139, 242, 0.2);
-    transition: 400ms 160px;
-}
-
 .sidebar {
     background-color: var(--main-color);
     color: var(--white-color);
     position: fixed;
     height: 100%;
     left: 0;
-    width: 178px;
+    width: var(--sidebar-width);
     box-shadow: 3px 0px 10px 1px rgba(36, 139, 242, 0.2);
-    transition: 400ms 160px;
+    overflow: hidden;
+
+    &:hover {
+        transition: 300ms;
+        width: 175px;
+
+        .sidebar-item-title,
+        .name-app {
+            padding: 0;
+        }
+    }
 }
 
 .sidebar__heading {
     font-size: 1.2rem;
-    padding: 24px 24px;
+    padding: 18px 18px;
     font-weight: 550;
     display: flex;
-    align-items: center;
-    justify-content: center;
     border-bottom: 1px solid rgba(225, 225, 225, 0.1);
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .sidebar__heading-icon {
-    font-size: 1.2rem;
-    margin-right: 12px;
+    font-size: 1.4rem;
+    display: block;
+    min-width: 36px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.sidebar .name-app {
+    font-size: 1.4rem;
+    display: block;
+    padding: 0 10px;
+    height: 36px;
+    line-height: 36px;
+    margin-left: 8px;
 }
 
 .sidebar .sidebar-menu a {
@@ -47,10 +56,11 @@
 .sidebar .sidebar-content {
     position: relative;
     font-size: 1.1rem;
-    padding: 16px 22px;
+    padding: 12px 18px;
     display: block;
     transition: right linear 0.2s;
     right: 0;
+    display: flex;
 }
 
 .sidebar .sidebar-content:hover {
@@ -59,5 +69,16 @@
 }
 
 .sidebar .sidebar-item-icon {
-    padding-right: 5px;
+    display: block;
+    min-width: 36px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.sidebar .sidebar-item-title {
+    display: block;
+    padding: 0 10px;
+    height: 36px;
+    line-height: 36px;
+    white-space: nowrap;
 }
