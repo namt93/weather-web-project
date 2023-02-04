@@ -4,13 +4,14 @@
     position: fixed;
     height: 100%;
     left: 0;
-    width: var(--sidebar-width);
+    width: var(--sidebar-width-small);
     box-shadow: 3px 0px 10px 1px rgba(36, 139, 242, 0.2);
     overflow: hidden;
 
     &:hover {
         transition: 300ms;
-        width: 175px;
+        width: var(--sidebar-width);
+        z-index: 1;
 
         .sidebar-item-title,
         .name-app {

@@ -3,7 +3,8 @@
     height: var(--header-height);
     background-color: var(--white-color);
     position: fixed;
-    left: var(--sidebar-width);
+    left: calc(var(--sidebar-width-small) + 30px);
+    z-index: 1;
 }
 
 .header > .header-content {

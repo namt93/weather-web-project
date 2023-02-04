@@ -6,9 +6,9 @@
 
 .container {
     width: 1100px;
-    min-height: 1000px;
-    background-color: #eee;
-    padding: var(--header-height) 0px 0px var(--sidebar-width);
+    height: 1000px;
+    background-color: #fff;
+    padding: var(--header-height) 0px 0px calc(var(--sidebar-width-small) + 49px);
 }
 
 .container .content {
