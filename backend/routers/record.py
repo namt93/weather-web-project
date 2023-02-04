@@ -9,6 +9,7 @@ router = APIRouter(
         tags=['Records']
 )
 
+
 @router.get("/", response_model=List[schemas.Record])
 def get_records(db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
     records = db.query(models.Record).all()
