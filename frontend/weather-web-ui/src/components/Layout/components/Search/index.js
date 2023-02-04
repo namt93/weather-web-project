@@ -22,9 +22,10 @@ function Search() {
     const searchDelayDebounce = 800;
     const searchValueDebounced = useDebounce(searchValue, searchDelayDebounce);
 
+    // Get searchValue
     useEffect(() => {
         if (!searchValueDebounced.trim()) {
-            setSearchResult([]);
+            setSearchResult([]); // Sure searchResult empty after deleting the last character of searchValue
             return;
         }
 
