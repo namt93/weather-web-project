@@ -1,13 +1,19 @@
 // Menu wrapper
 .menu-list {
-    width: 224px;
-
     .menu-item {
         margin-left: 0px;
         background-color: #fff;
         color: rgba(0, 0, 0, 0.8);
         padding: 14px 12px;
     }
+}
+
+.size-list-normal {
+    width: 224px;
+}
+
+.size-list-small {
+    width: 100px;
 }
 
 .menu-popper {

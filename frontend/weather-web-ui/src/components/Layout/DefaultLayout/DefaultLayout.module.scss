@@ -5,8 +5,8 @@
 }
 
 .container {
-    width: 1100px;
-    height: 1000px;
+    width: var(--default-layout-width);
+    height: 900px;
     background-color: #fff;
     padding: var(--header-height) 0px 0px calc(var(--sidebar-width-small) + 49px);
 }

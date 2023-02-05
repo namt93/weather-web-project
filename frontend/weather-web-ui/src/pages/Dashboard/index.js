@@ -1,4 +1,5 @@
 import {
+    faCaretDown,
     faCloudRain,
     faCloudShowersHeavy,
     faDroplet,
@@ -14,11 +15,38 @@ import SemiCircleProgress from 'react-progressbar-semicircle';
 import styles from './Dashboard.module.scss';
 import ProgressBar from '~/components/Bar/ProgressBar';
 import SegmentedProgressBar from '~/components/Bar/SegmentedProgressBar';
+import LineChart from '~/components/Chart/LineChart';
+import Menu from '~/components/Popper/Menu';
 
 const cx = classNames.bind(styles);
 
+// const of weather
+const humStates = ['dry', 'normal', 'wet'];
+const tempStates = ['cold', 'normal', 'hot'];
+const chanseRainStates = ['0-25%', '26-50%', '51-75%', '76-100%'];
+const precipitationStates = ['10', '20', '30', '40', '50', '60', '70', '80', '90'];
+
+const tempStopNumbers = [10, 30, 45];
+const humStopNumbers = [30, 60, 100];
+const chanseRainStopNumbers = [25, 50, 75, 100];
+const precipitationStopNumbers = [10, 20, 30, 40, 50, 60, 70, 80, 90];
+
+// const of forecast
+const TEMPERATURE_UNITS = [
+    { type: 'degree', title: 'C' },
+    { type: 'degree', title: 'F' },
+];
+const TIME_INTERVALS = [{ title: '5 days' }, { title: '12 hours' }];
+
 function Dashboard() {
     const [record, setRecord] = useState({});
+    const [tempUnitState, setTempUnitState] = useState('C');
+    const [intervalState, setIntervalState] = useState('5 days');
+
+    var lineChartState = {
+        tempUnitState,
+        intervalState,
+    };
 
     // Get lastest record of station
     const getRecord = () => {
@@ -43,17 +71,7 @@ function Dashboard() {
         };
     }, []);
 
-    // state of weather
-    const humStates = ['dry', 'normal', 'wet'];
-    const tempStates = ['cold', 'normal', 'hot'];
-    const chanseRainStates = ['0-25%', '26-50%', '51-75%', '76-100%'];
-    const precipitationStates = ['10', '20', '30', '40', '50', '60', '70', '80', '90'];
-
-    const tempStopNumbers = [10, 30, 45];
-    const humStopNumbers = [30, 60, 100];
-    const chanseRainStopNumbers = [25, 50, 75, 100];
-    const precipitationStopNumbers = [10, 20, 30, 40, 50, 60, 70, 80, 90];
-
+    // calc currState of weather
     const calculateStateProperty = (value, stopNumbers, states) => {
         var currentState = '';
         stopNumbers.map((stopNumber, index) => {
@@ -69,6 +87,7 @@ function Dashboard() {
 
     return (
         <div className={cx('wrapper')}>
+            {/* Details of today's weather section */}
             <h2 className={cx('today-details--title')}>More details of today's weather</h2>
             <div className={cx('property-container')}>
                 <div className={(cx('details-property'), cx('grid-item'))}>
@@ -84,7 +103,7 @@ function Dashboard() {
                             <SemiCircleProgress
                                 stroke={'var(--main-color)'}
                                 percentage={record.average_wind_speed}
-                                diameter={140}
+                                diameter={160}
                             />
                         </div>
                         <div className={cx('property-value', 'wind-speed-value')}>
@@ -213,6 +232,30 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* Weather forecast section */}
+            <h2 className={cx('today-details--title')}>Weather forecast</h2>
+            <div className={cx('weather-forecast')}>
+                <div className={cx('weather-forecast-actions')}>
+                    <div>
+                        <Menu items={TEMPERATURE_UNITS} sizeList="size-list-small" onChange={setTempUnitState}>
+                            <button className={cx('forecast-actions-item')}>
+                                <div className={cx('forecast-actions-item-title')}>&deg;{tempUnitState}</div>
+                                <FontAwesomeIcon icon={faCaretDown} />
+                            </button>
+                        </Menu>
+                    </div>
+                    <div>
+                        <Menu items={TIME_INTERVALS} sizeList="size-list-small" onChange={setIntervalState}>
+                            <button className={cx('forecast-actions-item')}>
+                                <div className={cx('forecast-actions-item-title')}>{intervalState}</div>
+                                <FontAwesomeIcon icon={faCaretDown} />
+                            </button>
+                        </Menu>
+                    </div>
+                </div>
+                <LineChart states={lineChartState} />
             </div>
         </div>
     );

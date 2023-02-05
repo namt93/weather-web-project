@@ -12,6 +12,7 @@ function MenuItem({ data, onClick }) {
     return (
         <Button className={classes} leftIcon={data.icon} to={data.to} onClick={onClick}>
             {' '}
+            {data.type == 'degree' && <>&deg;</>}
             {data.title}{' '}
         </Button>
     );
