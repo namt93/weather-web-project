@@ -12,7 +12,8 @@ import { useState, useEffect } from 'react';
 import SemiCircleProgress from 'react-progressbar-semicircle';
 
 import styles from './Dashboard.module.scss';
-import ProgressBar from './ProgressBar';
+import ProgressBar from '~/components/Bar/ProgressBar';
+import SegmentedProgressBar from '~/components/Bar/SegmentedProgressBar';
 
 const cx = classNames.bind(styles);
 
@@ -41,6 +42,30 @@ function Dashboard() {
             clearInterval(timerId);
         };
     }, []);
+
+    // state of weather
+    const humStates = ['dry', 'normal', 'wet'];
+    const tempStates = ['cold', 'normal', 'hot'];
+    const chanseRainStates = ['0-25%', '26-50%', '51-75%', '76-100%'];
+    const precipitationStates = ['10', '20', '30', '40', '50', '60', '70', '80', '90'];
+
+    const tempStopNumbers = [10, 30, 45];
+    const humStopNumbers = [30, 60, 100];
+    const chanseRainStopNumbers = [25, 50, 75, 100];
+    const precipitationStopNumbers = [10, 20, 30, 40, 50, 60, 70, 80, 90];
+
+    const calculateStateProperty = (value, stopNumbers, states) => {
+        var currentState = '';
+        stopNumbers.map((stopNumber, index) => {
+            if (value <= stopNumber && currentState == '') {
+                currentState = states[index];
+            }
+        });
+        return currentState;
+    };
+
+    const temperatureState = calculateStateProperty(record.temperature, tempStopNumbers, tempStates);
+    const humidityState = calculateStateProperty(record.humidity, humStopNumbers, humStates);
 
     return (
         <div className={cx('wrapper')}>
@@ -77,9 +102,17 @@ function Dashboard() {
                             </i>
                         </div>
                         <div className={cx('property-value')}>
-                            <h2>{record.temperature} &deg;C</h2>
+                            <h2>{record.temperature}&deg;C</h2>
+                            <div className={cx('property-state')}>{temperatureState}</div>
                         </div>
-                        <ProgressBar completed={record.temperature * 2} />
+                        <div className={cx('property-display')}>
+                            <SegmentedProgressBar
+                                completed={record.temperature}
+                                stopNumbers={tempStopNumbers}
+                                colors={['#6df060', '#eff020', '#f22822']}
+                                states={tempStates}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className={(cx('details-property'), cx('grid-item'))}>
@@ -93,8 +126,16 @@ function Dashboard() {
                         </div>
                         <div className={cx('property-value')}>
                             <h2>{record.humidity}%</h2>
+                            <div className={cx('property-state')}>{humidityState}</div>
                         </div>
-                        <ProgressBar completed={record.humidity} />
+                        <div className={cx('property-display')}>
+                            <SegmentedProgressBar
+                                completed={record.humidity}
+                                stopNumbers={humStopNumbers}
+                                colors={['var(--main-color)', 'var(--main-color)', 'var(--main-color)']}
+                                states={humStates}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className={(cx('details-property'), cx('grid-item'))}>
@@ -106,8 +147,10 @@ function Dashboard() {
                                 <FontAwesomeIcon icon={faWater} />
                             </i>
                         </div>
-                        <div className={cx('property-value')}>{record.barometric_pressure}atm</div>
-                        <div className={cx('property-display')}>{record.barometric_pressure}atm</div>
+                        <div className={cx('property-value')}>
+                            <h2>{record.barometric_pressure}atm</h2>
+                        </div>
+                        <ProgressBar completed={record.barometric_pressure} />
                     </div>
                 </div>
                 <div className={(cx('details-property'), cx('grid-item'))}>
@@ -119,8 +162,23 @@ function Dashboard() {
                                 <FontAwesomeIcon icon={faCloudShowersHeavy} />
                             </i>
                         </div>
-                        <div className={cx('property-value')}>42%</div>
-                        <div className={cx('property-display')}>42%</div>
+                        <div className={cx('property-value')}>
+                            <h2>42%</h2>
+                        </div>
+                        <di className={cx('property-display')}>
+                            <SegmentedProgressBar
+                                completed={42}
+                                stopNumbers={chanseRainStopNumbers}
+                                colors={[
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                ]}
+                                states={chanseRainStates}
+                            />
+                        </di>
                     </div>
                 </div>
                 <div className={(cx('details-property'), cx('grid-item'))}>
@@ -132,8 +190,27 @@ function Dashboard() {
                                 <FontAwesomeIcon icon={faCloudRain} />
                             </i>
                         </div>
-                        <div className={cx('property-value')}>1.4cm</div>
-                        <div className={cx('property-display')}>1.4cm</div>
+                        <div className={cx('property-value')}>
+                            <h2>1.4cm</h2>
+                        </div>
+                        <div className={cx('property-display')}>
+                            <SegmentedProgressBar
+                                completed={1.4}
+                                stopNumbers={precipitationStopNumbers}
+                                colors={[
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                    'var(--main-color)',
+                                ]}
+                                states={precipitationStates}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

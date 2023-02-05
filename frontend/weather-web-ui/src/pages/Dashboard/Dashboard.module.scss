@@ -32,6 +32,7 @@
 
 .property-title {
     width: 100px;
+    font-weight: 560;
 }
 
 .property-icon {
@@ -47,18 +48,22 @@
 }
 
 .wind-speed-display {
-    padding-left: 52px;
+    padding-left: 36px;
 }
 
 .property-value {
     width: 100%;
     height: 24px;
-    padding-left: 90px;
+    padding-left: 86px;
     padding-top: 4px;
+}
+
+.property-state {
+    padding-left: 4px;
 }
 
 .wind-speed-value {
     position: relative;
-    top: -24px;
-    left: -4px;
+    top: -30px;
+    left: -18px;
 }
