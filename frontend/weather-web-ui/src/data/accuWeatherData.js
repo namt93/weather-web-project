@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const accuWeatherData5Days = {
     Headline: {
@@ -184,14 +184,16 @@ function transformDegFtoDegC(value) {
     return transformedValue;
 }
 
-function transformedAccuWeather5DaysFunc() {
+// Get 5 days data
+function transformedAccuWeatherTemp5DaysFunc(accuWeatherData5Days) {
     const transformedDays = [];
     const transformedTemperaturesdegF = [];
     const transformedTemperaturesdegC = [];
-    accuWeatherData5Days.DailyForecasts.map((DailyForecast) => {
-        transformedDays.push(DailyForecast.Date.slice(0, 10));
-        transformedTemperaturesdegF.push(DailyForecast.Temperature.Maximum.Value);
-        transformedTemperaturesdegC.push(transformDegFtoDegC(DailyForecast.Temperature.Maximum.Value));
+
+    accuWeatherData5Days?.DailyForecasts?.map((DailyForecast) => {
+        transformedDays.push(DailyForecast?.Date?.slice(0, 10));
+        transformedTemperaturesdegF.push(DailyForecast?.Temperature.Maximum.Value);
+        transformedTemperaturesdegC.push(transformDegFtoDegC(DailyForecast?.Temperature.Maximum.Value));
     });
     return {
         transformedDays,
@@ -200,238 +202,114 @@ function transformedAccuWeather5DaysFunc() {
     };
 }
 
-export const transformedAccuWeather5DaysData = transformedAccuWeather5DaysFunc();
+export function GetAccuWeatherTemp5Days() {
+    const [record, setRecord] = useState({});
+    var accuWeatherData5Days = {};
 
-export const accuWeatherData12Hours = [
-    {
-        DateTime: '2023-02-05T23:00:00+07:00',
-        EpochDateTime: 1675612800,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: false,
-        Temperature: {
-            Value: 68.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 9,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=1&hbhhour=23&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=1&hbhhour=23&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T00:00:00+07:00',
-        EpochDateTime: 1675616400,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: false,
-        Temperature: {
-            Value: 68.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 9,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=0&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=0&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T01:00:00+07:00',
-        EpochDateTime: 1675620000,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: false,
-        Temperature: {
-            Value: 68.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 7,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=1&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=1&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T02:00:00+07:00',
-        EpochDateTime: 1675623600,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: false,
-        Temperature: {
-            Value: 68.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 7,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=2&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=2&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T03:00:00+07:00',
-        EpochDateTime: 1675627200,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: false,
-        Temperature: {
-            Value: 67.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 6,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=3&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=3&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T04:00:00+07:00',
-        EpochDateTime: 1675630800,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: false,
-        Temperature: {
-            Value: 67.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 5,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=4&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=4&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T05:00:00+07:00',
-        EpochDateTime: 1675634400,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: false,
-        Temperature: {
-            Value: 67.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 5,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=5&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=5&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T06:00:00+07:00',
-        EpochDateTime: 1675638000,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: false,
-        Temperature: {
-            Value: 66.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 8,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=6&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=6&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T07:00:00+07:00',
-        EpochDateTime: 1675641600,
-        WeatherIcon: 12,
-        IconPhrase: 'Showers',
-        HasPrecipitation: true,
-        PrecipitationType: 'Rain',
-        PrecipitationIntensity: 'Light',
-        IsDaylight: true,
-        Temperature: {
-            Value: 67.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 51,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=7&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=7&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T08:00:00+07:00',
-        EpochDateTime: 1675645200,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: true,
-        Temperature: {
-            Value: 67.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 47,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=8&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=8&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T09:00:00+07:00',
-        EpochDateTime: 1675648800,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: true,
-        Temperature: {
-            Value: 69.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 35,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=9&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=9&lang=en-us',
-    },
-    {
-        DateTime: '2023-02-06T10:00:00+07:00',
-        EpochDateTime: 1675652400,
-        WeatherIcon: 7,
-        IconPhrase: 'Cloudy',
-        HasPrecipitation: false,
-        IsDaylight: true,
-        Temperature: {
-            Value: 69.0,
-            Unit: 'F',
-            UnitType: 18,
-        },
-        PrecipitationProbability: 19,
-        MobileLink:
-            'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=10&lang=en-us',
-        Link: 'http://www.accuweather.com/en/vn/hanoi/353412/hourly-weather-forecast/353412?day=2&hbhhour=10&lang=en-us',
-    },
-];
+    useEffect(() => {
+        let intervalId = setInterval(() => {
+            fetch(
+                `http://dataservice.accuweather.com/forecasts/v1/daily/5day/353412?apikey=TmSwoc864G9LQ6Sy1kVpiuwaPCTLN92z`,
+            )
+                .then((res) => res.json())
+                .then((res) => {
+                    setRecord(res);
+                })
+                .catch(() => {
+                    console.log('Error fetch AccuWeather 5 days');
+                });
+        }, 3000);
 
-function transformedAccuWeather12HoursFunc() {
-    const transformedDays = [];
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+
+    if (Object.keys(record) != 0) {
+        accuWeatherData5Days = record;
+    }
+    const transformed5DaysData = transformedAccuWeatherTemp5DaysFunc(accuWeatherData5Days);
+
+    return transformed5DaysData;
+}
+
+// Get 12 hours data
+function transformedAccuWeatherTemp12HoursFunc(accuWeatherData12Hours) {
+    const transformedHours = [];
     const transformedTemperaturesdegF = [];
     const transformedTemperaturesdegC = [];
 
-    accuWeatherData12Hours.map((oneHourData) => {
-        transformedDays.push(oneHourData.DateTime.slice(11, 19));
-        transformedTemperaturesdegF.push(oneHourData.Temperature.Value);
-        transformedTemperaturesdegC.push(transformDegFtoDegC(oneHourData.Temperature.Value));
+    accuWeatherData12Hours?.map((HourForecast) => {
+        transformedHours.push(HourForecast?.DateTime?.slice(11, 19));
+        transformedTemperaturesdegF.push(HourForecast?.Temperature.Value);
+        transformedTemperaturesdegC.push(transformDegFtoDegC(HourForecast?.Temperature.Value));
     });
     return {
-        transformedDays,
+        transformedHours,
         transformedTemperaturesdegF,
         transformedTemperaturesdegC,
     };
 }
 
-export const transformedAccuWeather12HoursData = transformedAccuWeather12HoursFunc();
+export function GetAccuWeatherTemp12Hours() {
+    const [record, setRecord] = useState({});
 
-function accuWeatherData() {
+    useEffect(() => {
+        let intervalId = setInterval(() => {
+            fetch(
+                `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/353412?apikey=TmSwoc864G9LQ6Sy1kVpiuwaPCTLN92z`,
+            )
+                .then((res) => res.json())
+                .then((res) => {
+                    setRecord(res);
+                })
+                .catch(() => {
+                    console.log('Error fetch AccuWeather 12 hours');
+                });
+        }, 5000);
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+
+    var transformed12HoursData = {};
+
+    if (Object.keys(record) == 0) {
+        transformed12HoursData = transformedAccuWeatherTemp12HoursFunc([]);
+    } else {
+        transformed12HoursData = transformedAccuWeatherTemp12HoursFunc(record);
+    }
+    return transformed12HoursData;
+}
+
+export function GetAccuWeather12Hours() {
+    const [record, setRecord] = useState({});
+
+    useEffect(() => {
+        let intervalId = setInterval(() => {
+            fetch(
+                `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/353412?apikey=TmSwoc864G9LQ6Sy1kVpiuwaPCTLN92z`,
+            )
+                .then((res) => res.json())
+                .then((res) => {
+                    setRecord(res);
+                })
+                .catch(() => {
+                    console.log('Error fetch AccuWeather 12 hours');
+                });
+        }, 5000);
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+
+    return record;
+}
+
+function AccuWeatherData() {
     return <div>accuWeatherData</div>;
 }
 
-export default accuWeatherData;
+export default AccuWeatherData;
