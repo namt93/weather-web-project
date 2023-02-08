@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-import { transformedAccuWeather5DaysData, transformedAccuWeather12HoursData } from '~/data/accuWeatherData';
+import { GetAccuWeatherTemp5Days, GetAccuWeatherTemp12Hours } from '~/data/accuWeatherData';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -51,15 +51,7 @@ export const options = {
     },
 };
 
-function LineChart({ states }) {
-    const dataToRender =
-        states.intervalState == '5 days' ? transformedAccuWeather5DaysData : transformedAccuWeather12HoursData;
-    const labels = dataToRender.transformedDays;
-    const dataToRenderInUnit =
-        states.tempUnitState == 'C'
-            ? dataToRender.transformedTemperaturesdegC
-            : dataToRender.transformedTemperaturesdegF;
-
+function LineChart({ labels, data }) {
     return (
         <Line
             data={{
@@ -74,7 +66,7 @@ function LineChart({ states }) {
                     },
                     {
                         label: 'accuWeather',
-                        data: dataToRenderInUnit,
+                        data: data,
                         borderColor: 'orangeRed',
                         backgroundColor: 'orangeRed',
                         tension: 0.5,
@@ -84,6 +76,22 @@ function LineChart({ states }) {
             options={options}
         />
     );
+}
+
+export function ForecastLineChart({ states }) {
+    // Get data
+    const transformedAccuWeather5DaysData = GetAccuWeatherTemp5Days();
+    const transformedAccuWeather12HoursData = GetAccuWeatherTemp12Hours();
+
+    const dataToRender =
+        states.intervalState == '5 days' ? transformedAccuWeather5DaysData : transformedAccuWeather12HoursData;
+    const labels = states.intervalState == '5 days' ? dataToRender.transformedDays : dataToRender.transformedHours;
+    const dataToRenderInUnit =
+        states.tempUnitState == 'C'
+            ? dataToRender.transformedTemperaturesdegC
+            : dataToRender.transformedTemperaturesdegF;
+
+    return <LineChart labels={labels} data={dataToRenderInUnit} />;
 }
 
 export default LineChart;

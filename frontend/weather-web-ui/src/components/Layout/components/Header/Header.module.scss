@@ -1,9 +1,10 @@
 .header {
-    width: 100%;
+    width: calc(100% - var(--sidebar-right-width) - 90px);
     height: var(--header-height);
     background-color: var(--white-color);
     position: fixed;
     left: calc(var(--sidebar-width-small) + 30px);
+    margin-right: 50px;
     z-index: 1;
 }
 
@@ -33,7 +34,7 @@
     align-items: center;
     position: fixed;
     top: 28px;
-    right: 132px;
+    right: calc(var(--sidebar-right-width) + 18px);
 }
 
 .more-btn {

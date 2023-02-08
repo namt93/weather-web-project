@@ -15,8 +15,9 @@ import SemiCircleProgress from 'react-progressbar-semicircle';
 import styles from './Dashboard.module.scss';
 import ProgressBar from '~/components/Bar/ProgressBar';
 import SegmentedProgressBar from '~/components/Bar/SegmentedProgressBar';
-import LineChart from '~/components/Chart/LineChart';
+import { ForecastLineChart } from '~/components/Chart/LineChart';
 import Menu from '~/components/Popper/Menu';
+import { SidebarRight } from '~/components/Layout/DefaultLayout/Sidebar';
 
 const cx = classNames.bind(styles);
 
@@ -102,7 +103,7 @@ function Dashboard() {
                         <div className={cx('wind-speed-display')}>
                             <SemiCircleProgress
                                 stroke={'var(--main-color)'}
-                                percentage={record.average_wind_speed}
+                                percentage={record.average_wind_speed ? record.average_wind_speed : 0}
                                 diameter={160}
                             />
                         </div>
@@ -184,7 +185,7 @@ function Dashboard() {
                         <div className={cx('property-value')}>
                             <h2>42%</h2>
                         </div>
-                        <di className={cx('property-display')}>
+                        <div className={cx('property-display')}>
                             <SegmentedProgressBar
                                 completed={42}
                                 stopNumbers={chanseRainStopNumbers}
@@ -197,7 +198,7 @@ function Dashboard() {
                                 ]}
                                 states={chanseRainStates}
                             />
-                        </di>
+                        </div>
                     </div>
                 </div>
                 <div className={(cx('details-property'), cx('grid-item'))}>
@@ -255,7 +256,7 @@ function Dashboard() {
                         </Menu>
                     </div>
                 </div>
-                <LineChart states={lineChartState} />
+                <ForecastLineChart states={lineChartState} />
             </div>
         </div>
     );

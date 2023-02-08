@@ -11,7 +11,7 @@ function SegmentedProgressBar({ completed, stopNumbers = [30, 70, 100], colors, 
 
     // create completedNumbers for ProgressBar
     stopNumbers.map((stopNumber, index) => {
-        if (completed < stopNumber) {
+        if (completed <= stopNumber) {
             if (!convertCompletedNumber) {
                 if (index > 0) {
                     convertCompletedNumber =

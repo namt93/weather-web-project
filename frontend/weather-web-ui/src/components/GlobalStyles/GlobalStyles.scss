@@ -6,6 +6,7 @@
     --white-color: #fff;
     --black-color: #000;
     --gray-color: #ccc;
+    --blue-black-color: #15156b;
 
     // Default layout
     --default-layout-width: 1200px;
@@ -15,8 +16,12 @@
     --bold-font-weight: 550;
 
     // Sidebar
+    // left
     --sidebar-width: 270px;
     --sidebar-width-small: 60px;
+
+    // right
+    --sidebar-right-width: 273px;
 }
 
 /* Reset CSS */
