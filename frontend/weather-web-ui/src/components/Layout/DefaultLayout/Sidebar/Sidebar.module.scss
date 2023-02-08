@@ -1,9 +1,10 @@
+// Sidebar left section
 .sidebar {
     background-color: var(--main-color);
     color: var(--white-color);
     position: fixed;
-    height: 100%;
     left: 0;
+    height: 100%;
     width: var(--sidebar-width-small);
     box-shadow: 3px 0px 10px 1px rgba(36, 139, 242, 0.2);
     overflow: hidden;
@@ -82,4 +83,66 @@
     height: 36px;
     line-height: 36px;
     white-space: nowrap;
+}
+
+// Sidebar right section
+.sidebar-right {
+    color: var(--white-color);
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: var(--sidebar-right-width);
+    box-shadow: 3px 0px 10px 1px rgba(36, 139, 242, 0.2);
+    overflow: hidden;
+}
+
+.sidebar-right-heading {
+    height: 30%;
+    border-bottom: 1px solid rgba(225, 225, 225, 0.1);
+}
+
+.sidebar-right-city,
+.sidebar-right-clock {
+    font-size: 24px;
+    position: fixed;
+}
+
+.sidebar-right-city {
+    font-size: 24px;
+    position: fixed;
+    top: 56px;
+    right: 72px;
+}
+
+.sidebar-right-clock {
+    font-size: 22px;
+    position: relative;
+    top: 80px;
+    left: 86px;
+}
+
+.sidebar-right-temperature {
+    font-size: 48px;
+    position: relative;
+    top: 100px;
+    left: 100px;
+    display: flex;
+}
+
+.temperature-unit {
+    font-size: 24px;
+}
+
+.chanse-rain-title {
+    margin-bottom: 8px;
+}
+
+.chanse-rain-section {
+    font-size: 18px;
+    margin: 24px 20px;
+}
+
+.chanse-rain-item {
+    display: flex;
+    padding-top: 28px;
 }
