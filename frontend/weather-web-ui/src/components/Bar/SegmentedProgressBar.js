@@ -8,18 +8,23 @@ const cx = classNames.bind(styles);
 function SegmentedProgressBar({ completed, stopNumbers = [30, 70, 100], colors, states }) {
     var completedNumbers = [];
     var convertCompletedNumber = 0;
+    var hasConvertedCompletedNumber = false;
 
     // create completedNumbers for ProgressBar
     stopNumbers.map((stopNumber, index) => {
         if (completed <= stopNumber) {
-            if (!convertCompletedNumber) {
+            if (!hasConvertedCompletedNumber) {
                 if (index > 0) {
                     convertCompletedNumber =
                         ((completed - stopNumbers[index - 1]) / (stopNumber - stopNumbers[index - 1])) * 100;
                 } else {
                     convertCompletedNumber = (completed / stopNumber) * 100;
+                    if (completed === 0) {
+                        convertCompletedNumber += 4;
+                    }
                 }
                 completedNumbers.push(convertCompletedNumber);
+                hasConvertedCompletedNumber = true;
             } else {
                 completedNumbers.push(0);
             }

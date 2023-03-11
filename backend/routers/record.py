@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.expression import text
 from typing import List
 from .. import models, schemas, utils, oauth2
 from ..database import get_db
@@ -62,11 +63,22 @@ def get_records_by_station_id(station_id: int, db: Session = Depends(get_db)):
 
 # Get the latest record of station
 @router.get("/latest/station/{station_id}", response_model=schemas.Record)
-def get_latest_records_by_station_id(station_id: int, db: Session = Depends(get_db)):
+def get_latest_record_by_station_id(station_id: int, db: Session = Depends(get_db)):
     latest_record = db.query(models.Record).filter(models.Record.station_id == station_id).all()[-1]
     return latest_record
 
+# Get the 12 hours records of station
+@router.get("/hourly/12hour/station/{station_id}", response_model=List[schemas.Record])
+def get_12hour_records_by_station_id(station_id: int, db: Session = Depends(get_db)):
+    records_12hour_by_station_id = db.query(models.Record).filter(models.Record.created_at > text('now() - interval \'12 hour\''), models.Record.station_id == station_id).all()
+    return records_12hour_by_station_id
 
+# Get the 5 days records of station
+@router.get("/daily/5day/station/{station_id}", response_model=List[schemas.Record])
+def get_5day_records_by_station_id(station_id: int, db: Session = Depends(get_db)):
+    records_5day_by_station_id = db.query(models.Record).filter(models.Record.created_at > text('now() - interval \'5 day\''), models.Record.station_id == station_id).all()
+    return records_5day_by_station_id
+    
 # Delete record by record Id
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_record(id: int, db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):

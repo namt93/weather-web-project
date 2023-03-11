@@ -5,7 +5,7 @@ from ..database import get_db
 
 router = APIRouter(
         prefix="/api/users",
-        tags=['users']
+        tags=['Users']
 )
 
 @router.post("/", status_code = status.HTTP_201_CREATED, response_model=schemas.UserOut)

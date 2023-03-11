@@ -255,22 +255,16 @@ export function GetAccuWeatherTemp12Hours() {
     const [record, setRecord] = useState({});
 
     useEffect(() => {
-        let intervalId = setInterval(() => {
-            fetch(
-                `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/353412?apikey=TmSwoc864G9LQ6Sy1kVpiuwaPCTLN92z`,
-            )
-                .then((res) => res.json())
-                .then((res) => {
-                    setRecord(res);
-                })
-                .catch(() => {
-                    console.log('Error fetch AccuWeather 12 hours');
-                });
-        }, 5000);
-
-        return () => {
-            clearInterval(intervalId);
-        };
+        fetch(
+            `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/353412?apikey=TmSwoc864G9LQ6Sy1kVpiuwaPCTLN92z`,
+        )
+            .then((res) => res.json())
+            .then((res) => {
+                setRecord(res);
+            })
+            .catch(() => {
+                console.log('Error fetch AccuWeather 12 hours');
+            });
     }, []);
 
     var transformed12HoursData = {};
@@ -287,22 +281,16 @@ export function GetAccuWeather12Hours() {
     const [record, setRecord] = useState({});
 
     useEffect(() => {
-        let intervalId = setInterval(() => {
-            fetch(
-                `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/353412?apikey=TmSwoc864G9LQ6Sy1kVpiuwaPCTLN92z`,
-            )
-                .then((res) => res.json())
-                .then((res) => {
-                    setRecord(res);
-                })
-                .catch(() => {
-                    console.log('Error fetch AccuWeather 12 hours');
-                });
-        }, 5000);
-
-        return () => {
-            clearInterval(intervalId);
-        };
+        fetch(
+            `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/353412?apikey=TmSwoc864G9LQ6Sy1kVpiuwaPCTLN92z`,
+        )
+            .then((res) => res.json())
+            .then((res) => {
+                setRecord(res);
+            })
+            .catch(() => {
+                console.log('Error fetch AccuWeather 12 hours');
+            });
     }, []);
 
     return record;

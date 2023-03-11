@@ -116,7 +116,7 @@ function Header() {
             <div className={cx('header-actions')}>
                 {currentUser ? (
                     <>
-                        <Tippy content="Upload Station" placement="bottom">
+                        <Tippy content="Station Register" placement="bottom">
                             <button className={cx('action-btn')}>
                                 <FontAwesomeIcon icon={faCloudUpload} />
                             </button>

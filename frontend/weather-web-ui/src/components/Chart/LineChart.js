@@ -13,6 +13,7 @@ import {
 import { Line } from 'react-chartjs-2';
 
 import { GetAccuWeatherTemp5Days, GetAccuWeatherTemp12Hours } from '~/data/accuWeatherData';
+import { GetWanruWeatherTemp5Days, GetWanruWeatherTemp12Hours } from '~/data/wanruWeatherData';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -34,7 +35,7 @@ export const options = {
             },
             title: {
                 display: true,
-                text: 'Days',
+                text: 'Time',
                 font: { size: 16 },
             },
         },
@@ -51,7 +52,7 @@ export const options = {
     },
 };
 
-function LineChart({ labels, data }) {
+function LineChart({ labels, accuData, wanruData = [21, 25, 22, 20, 20] }) {
     return (
         <Line
             data={{
@@ -59,14 +60,14 @@ function LineChart({ labels, data }) {
                 datasets: [
                     {
                         label: 'Wanru Weather',
-                        data: [21, 25, 22, 20, 20],
+                        data: wanruData,
                         borderColor: 'blue',
                         backgroundColor: 'blue',
                         tension: 0.5,
                     },
                     {
                         label: 'accuWeather',
-                        data: data,
+                        data: accuData,
                         borderColor: 'orangeRed',
                         backgroundColor: 'orangeRed',
                         tension: 0.5,
@@ -83,15 +84,27 @@ export function ForecastLineChart({ states }) {
     const transformedAccuWeather5DaysData = GetAccuWeatherTemp5Days();
     const transformedAccuWeather12HoursData = GetAccuWeatherTemp12Hours();
 
-    const dataToRender =
-        states.intervalState == '5 days' ? transformedAccuWeather5DaysData : transformedAccuWeather12HoursData;
-    const labels = states.intervalState == '5 days' ? dataToRender.transformedDays : dataToRender.transformedHours;
-    const dataToRenderInUnit =
-        states.tempUnitState == 'C'
-            ? dataToRender.transformedTemperaturesdegC
-            : dataToRender.transformedTemperaturesdegF;
+    const transformedWanruWeather5DaysData = GetWanruWeatherTemp5Days();
+    const transformedWanruWeather12HoursData = GetWanruWeatherTemp12Hours();
 
-    return <LineChart labels={labels} data={dataToRenderInUnit} />;
+    // Convert time interval and degree of LineChart
+    const dataAccuToRender =
+        states.intervalState == '5 days' ? transformedAccuWeather5DaysData : transformedAccuWeather12HoursData;
+    const labels =
+        states.intervalState == '5 days' ? dataAccuToRender.transformedDays : dataAccuToRender.transformedHours;
+    const dataAccuToRenderInUnit =
+        states.tempUnitState == 'C'
+            ? dataAccuToRender.transformedTemperaturesdegC
+            : dataAccuToRender.transformedTemperaturesdegF;
+
+    const dataWanruToRender =
+        states.intervalState == '5 days' ? transformedWanruWeather5DaysData : transformedWanruWeather12HoursData;
+    const dataWanruToRenderInUnit =
+        states.tempUnitState == 'C'
+            ? dataWanruToRender.transformedTemperaturesdegC
+            : dataWanruToRender.transformedTemperaturesdegF;
+
+    return <LineChart labels={labels} accuData={dataAccuToRenderInUnit} wanruData={dataWanruToRenderInUnit} />;
 }
 
 export default LineChart;

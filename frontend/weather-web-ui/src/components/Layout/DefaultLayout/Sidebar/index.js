@@ -34,16 +34,17 @@ export function SidebarRight({ children, sidebarColor = 'var(--blue-black-color)
             var chanseRain = accuWeatherRecords[value]?.PrecipitationProbability;
             if (futureHour >= 24) {
                 futureHour -= 24;
-                futureHourString = futureHour.toString() + 'AM';
+                futureHourString = `${futureHour}` + 'AM';
             } else if (futureHour > 12) {
                 futureHour -= 12;
-                futureHourString = futureHour.toString() + 'PM';
+                futureHourString = `${futureHour}` + 'PM';
+            } else {
+                futureHourString = `${futureHour}` + 'AM';
             }
             timelines.push({ futureHourString, chanseRain });
         });
     };
     createTimelines(currentHour);
-    console.log(timelines);
 
     const renderTimelines = () => {
         return timelines.map((time, index) => {
