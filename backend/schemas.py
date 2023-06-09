@@ -5,19 +5,31 @@ from typing import Optional
 # Record schemas
 class RecordBase(BaseModel):
     temperature: float
-    humidity: int
-    wind_direction: int
-    average_wind_speed: float
-    max_wind_speed: float
-    barometric_pressure: float
+    rain_cumulative: float
+    rain_per_min: float
+    rain_per_hour: float
+    wind_speed_max: float
+    wind_speed_min: float
+    wind_direction_at_max: int
+    wind_direction_at_min: int
+    visibility_max: float
+    visibility_min: float
 
 class RecordCreate(RecordBase):
     station_id: int
     password: str
 
 
-class Record(RecordBase):
-    record_id: int
+class OperationalRecord(RecordBase):
+    operational_record_id: int
+    created_at: datetime
+    station_id: int
+
+    class Config:
+        orm_mode = True
+
+class StoredRecord(RecordBase):
+    stored_record_id: int
     created_at: datetime
     station_id: int
 
@@ -77,3 +89,49 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     id: Optional[str] = None
     role: Optional[str] = None
+
+# Warning schemas
+class WarningBase(BaseModel):
+    wind: str
+    rain: str
+    visibility: str
+
+class WarningCreate(WarningBase):
+    station_id: int
+    password: str
+
+class WarningUpdate(BaseModel):
+    warning_id: int
+    is_active: bool
+
+class Warning(WarningBase):
+    warning_id: int
+    is_active: bool
+    created_at: datetime
+    updated_at: datetime
+    station_id: int
+
+    class Config:
+        orm_mode = True
+
+# Error schemas
+class ErrorBase(BaseModel):
+    sensor_is_broken: str
+
+class ErrorCreate(ErrorBase):
+    station_id: int
+    password: str
+
+class ErrorUpdate(BaseModel):
+    error_id: int
+    is_active: bool
+
+class Error(ErrorBase):
+    error_id: int
+    is_active: bool
+    created_at: datetime
+    updated_at: datetime
+    station_id: int
+
+    class Config:
+        orm_mode = True
