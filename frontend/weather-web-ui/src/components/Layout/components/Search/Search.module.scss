@@ -1,17 +1,13 @@
 .header-search {
-    display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    top: 18px;
-    left: 500px;
-    padding-top: 8px;
+    line-height: var(--header-height);
 }
 
 .search-bar .search-input,
 .search-result {
     width: calc(var(--default-layout-width) * 40 / 100);
-    background-color: #eee;
+    background-color: #201e1e;
 }
 
 .search-title {
@@ -58,8 +54,8 @@
     width: 15px;
     height: 16px;
     position: absolute;
-    left: 8px;
-    top: 18px;
+    left: 620px;
+    top: 28px;
     color: #ccc;
 
     &:hover {
@@ -68,6 +64,7 @@
 }
 
 .search-input {
+    color: #dfefff;
     &:focus-visible {
         outline: none;
         padding-left: 14px;

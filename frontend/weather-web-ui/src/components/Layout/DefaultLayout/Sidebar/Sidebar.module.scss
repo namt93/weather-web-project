@@ -1,23 +1,23 @@
 // Sidebar left section
 .sidebar {
-    background-color: var(--main-color);
+    background-color: #0f0f0f;
     color: var(--white-color);
     position: fixed;
     left: 0;
     height: 100%;
-    width: var(--sidebar-width-small);
+    width: var(--sidebar-width);
     box-shadow: 3px 0px 10px 1px rgba(36, 139, 242, 0.2);
     overflow: hidden;
 
     &:hover {
-        transition: 300ms;
-        width: calc(var(--sidebar-width) - 28px);
+        // transition: 300ms;
+        // width: calc(var(--sidebar-width) - 28px);
         z-index: 1;
 
-        .sidebar-item-title,
-        .name-app {
-            padding: 0;
-        }
+        // .sidebar-item-title,
+        // .name-app {
+        //     padding: 0;
+        // }
     }
 }
 
@@ -45,6 +45,10 @@
     height: 36px;
     line-height: 36px;
     margin-left: 8px;
+}
+
+.sidebar ul {
+    padding-left: 0;
 }
 
 .sidebar .sidebar-menu a {
@@ -88,11 +92,11 @@
 // Sidebar right section
 .sidebar-right {
     color: var(--white-color);
-    position: fixed;
-    right: 0;
+    // position: fixed;
+    // right: 0;
     height: 100%;
-    width: var(--sidebar-right-width);
-    box-shadow: 3px 0px 10px 1px rgba(36, 139, 242, 0.2);
+    width: calc(var(--sidebar-right-width) + 30px);
+    box-shadow: 3px 0px 10px 1px rgba(36, 139, 242, 0.4);
     overflow: hidden;
 }
 
@@ -110,22 +114,22 @@
 .sidebar-right-city {
     font-size: 24px;
     position: fixed;
-    top: 56px;
-    right: 72px;
+    top: 106px;
+    right: 93px;
 }
 
 .sidebar-right-clock {
     font-size: 22px;
     position: relative;
     top: 80px;
-    left: 86px;
+    left: 94px;
 }
 
 .sidebar-right-temperature {
     font-size: 48px;
     position: relative;
     top: 100px;
-    left: 100px;
+    left: 127px;
     display: flex;
 }
 

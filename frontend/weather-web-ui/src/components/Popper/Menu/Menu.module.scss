@@ -2,8 +2,8 @@
 .menu-list {
     .menu-item {
         margin-left: 0px;
-        background-color: #fff;
-        color: rgba(0, 0, 0, 0.8);
+        background-color: #282828;
+        color: var(--primary-color);
         padding: 14px 12px;
     }
 }
@@ -28,11 +28,11 @@
     font-weight: 600;
 
     &.separate {
-        border-top: 1px solid rgba(22, 24, 34, 0.12);
+        border-top: 1px solid rgba(94, 97, 110, 0.2);
     }
 
     &:hover {
-        background-color: rgba(7, 8, 11, 0.08);
+        background-image: linear-gradient(to right, rgba(106, 172, 238, 0.5), rgba(106, 172, 238, 0));
     }
 }
 

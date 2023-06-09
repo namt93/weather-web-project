@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import {
     faBell,
     faCircleQuestion,
+    faCloudSun,
     faCloudUpload,
     faCog,
     faEarthAsia,
@@ -103,17 +104,23 @@ function Header() {
     ];
 
     return (
-        <div className={cx('header')}>
+        <div className={cx('header', 'row')}>
             {/* Greating section */}
-            <div className={cx('header-content')}>
-                <h2 className={cx('header-greating')}>January 2022</h2>
-                <p className={cx('greating-description')}>Thursday, Jan 4 2022</p>
+            <div className={cx('header-content', 'col-sm-2')}>
+                {/* <h2 className={cx('header-greating')}>January 2022</h2>
+                <p className={cx('greating-description')}>Thursday, Jan 4 2022</p> */}
+                <div className={cx('header__heading')}>
+                    <i className={cx('header__heading-icon')}>
+                        <FontAwesomeIcon icon={faCloudSun} />
+                    </i>
+                    <div className={cx('name-app')}> Wanru</div>
+                </div>
             </div>
 
             {/* Search section */}
             <Search />
 
-            <div className={cx('header-actions')}>
+            <div className={cx('header-actions', 'col-sm-2')}>
                 {currentUser ? (
                     <>
                         <Tippy content="Station Register" placement="bottom">

@@ -1,18 +1,18 @@
 .header {
-    width: calc(100% - var(--sidebar-right-width) - 90px);
     height: var(--header-height);
-    background-color: var(--white-color);
-    position: fixed;
-    left: calc(var(--sidebar-width-small) + 30px);
-    margin-right: 50px;
+    width: 100%;
+    background-color: rgb(23, 22, 22);
+    color: var(--primary-color);
     z-index: 1;
+    position: fixed;
+    top: 0;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
-.header > .header-content {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    height: 60px;
+.row {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 // Greating
@@ -28,13 +28,25 @@
     color: var(--gray-color);
 }
 
+.header__heading {
+    font-size: 2rem;
+    font-weight: 550;
+    line-height: var(--header-height);
+    display: flex;
+    padding-left: 36px;
+}
+
+.header__heading-icon {
+    font-size: 1.4rem;
+    display: block;
+    min-width: 36px;
+    height: 34px;
+    line-height: var(--header-height);
+}
+
 // Actions
 .header-actions {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 28px;
-    right: calc(var(--sidebar-right-width) + 18px);
+    padding-top: 16px;
 }
 
 .more-btn {
@@ -48,7 +60,8 @@
 .action-btn {
     font-size: 24px;
     background-color: transparent;
-    padding: 4px 12px;
+    color: var(--white-color);
+    padding: 0px 12px;
     cursor: pointer;
 }
 
@@ -56,9 +69,8 @@
     width: 28px;
     height: 28px;
     object-fit: cover;
-
     margin-left: 16px;
-
+    margin-bottom: 8px;
     border-radius: 50%;
     cursor: pointer;
 }

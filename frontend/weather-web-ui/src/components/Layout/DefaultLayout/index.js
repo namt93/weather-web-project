@@ -7,14 +7,14 @@ import Sidebar, { SidebarRight } from './Sidebar';
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
-    const [tempDisplay, setTempDisplay] = useState(0);
+    // const [tempDisplay, setTempDisplay] = useState(0);
 
     // Get lastest record of station
     const getTempDisplay = () => {
         fetch(`http://localhost:8000/api/records/latest/station/9`)
             .then((res) => res.json())
             .then((res) => {
-                setTempDisplay(res?.temperature);
+                // setTempDisplay(res?.temperature);
             })
             .catch(() => {
                 console.log('Error fetch');
@@ -35,11 +35,10 @@ function DefaultLayout({ children }) {
     return (
         <div className={cx('wrapper')}>
             <Header />
-            <Sidebar />
             <div className={cx('container')}>
                 <div className={cx('content')}>{children}</div>
             </div>
-            <SidebarRight tempDisplay={tempDisplay}></SidebarRight>
+            {/* <SidebarRight tempDisplay={tempDisplay}></SidebarRight> */}
         </div>
     );
 }
