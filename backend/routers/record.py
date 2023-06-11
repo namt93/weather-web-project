@@ -69,7 +69,7 @@ def get_records_by_station_id(station_id: int, db: Session = Depends(get_db)):
 
 
 # Get the latest record of station
-@router.get("/latest/station/{station_id}", response_model=schemas.OperationalRecord)
+@router.get("/latest/station/{station_id}", response_model=schemas.StoredRecord)
 def get_latest_record_by_station_id(station_id: int, db: Session = Depends(get_db)):
     latest_record = db.query(models.StoredRecord).filter(models.StoredRecord.station_id == station_id).all()[-1]
     return latest_record
@@ -138,11 +138,11 @@ def count_stations(db: Session):
     last_operational_records_dict['wind_speed_min'] = float(last_operational_records_dict['wind_speed_min'])
     last_operational_records_dict['visibility_min'] = float(last_operational_records_dict['visibility_min'])
 
-    new_stored_record = models.StoredRecord(**last_operational_records_dict)
+#    new_stored_record = models.StoredRecord(**last_operational_records_dict)
 #    db.add(new_stored_record)
 #    db.commit()
 #    print("hihihihihihi")
-
+#
 
 @router.on_event("startup")
 @repeat_every(seconds=6, wait_first=True)
