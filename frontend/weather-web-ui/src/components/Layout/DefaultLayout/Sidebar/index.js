@@ -100,12 +100,6 @@ function Sidebar({ sidebarColor = 'var(--main-color)' }) {
 
     return (
         <nav className={cx('sidebar')} style={sidbarStyle}>
-            {/* <h3 className={cx('sidebar__heading')}>
-                    <i className={cx('sidebar__heading-icon')}>
-                        <FontAwesomeIcon icon={faCloudSun} />
-                    </i>
-                    <div className={cx('name-app')}> Wanru</div>
-                </h3> */}
             <ul className={cx('sidebar-menu')}>
                 <li className={cx('sidebar-item', { 'sidebar-item--active': window.location.pathname == '/' })}>
                     <Link to="/" className={cx('sidebar-item__link')}>
@@ -117,6 +111,7 @@ function Sidebar({ sidebarColor = 'var(--main-color)' }) {
                         </div>
                     </Link>
                 </li>
+
                 <li
                     className={cx('sidebar-item', {
                         'sidebar-item--active': window.location.pathname == '/calendar',

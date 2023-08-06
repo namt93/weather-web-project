@@ -44,6 +44,7 @@ def create_records(record: schemas.RecordCreate, db: Session = Depends(get_db)):
 #    print(record_dict)
     new_record = models.OperationalRecord(**record_dict)
 #    print(new_record.__dict__)
+    print("hihi")
     db.add(new_record)
     db.commit()
     db.refresh(new_record)
@@ -77,7 +78,7 @@ def get_latest_record_by_station_id(station_id: int, db: Session = Depends(get_d
 # Get the 12 hours records of station
 @router.get("/hourly/12hour/station/{station_id}", response_model=List[schemas.StoredRecord])
 def get_12hour_records_by_station_id(station_id: int, db: Session = Depends(get_db)):
-    records_12hour_by_station_id = db.query(models.StoredRecord).filter(models.StoredRecord.created_at > text('now() - interval \'12 hour\''), models.StoredRecord.station_id == station_id).all()
+    records_12hour_by_station_id = db.query(models.StoredRecord).filter(models.StoredRecord.created_at > text('now() - interval \'12 hour\''), models.StoredRecord.station_id == station_id).all()[-6:]
     return records_12hour_by_station_id
 
 # Get the 5 days records of station
@@ -138,14 +139,14 @@ def count_stations(db: Session):
     last_operational_records_dict['wind_speed_min'] = float(last_operational_records_dict['wind_speed_min'])
     last_operational_records_dict['visibility_min'] = float(last_operational_records_dict['visibility_min'])
 
-#    new_stored_record = models.StoredRecord(**last_operational_records_dict)
-#    db.add(new_stored_record)
-#    db.commit()
-#    print("hihihihihihi")
-#
+    new_stored_record = models.StoredRecord(**last_operational_records_dict)
+    db.add(new_stored_record)
+    print("haha")
+    db.commit()
+
 
 @router.on_event("startup")
-@repeat_every(seconds=6, wait_first=True)
+@repeat_every(seconds=10, wait_first=True)
 def load_operational_records_to_storage_task():
     with sessionmaker.context_session() as db:
         count_stations(db=db)

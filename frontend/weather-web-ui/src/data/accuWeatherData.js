@@ -244,6 +244,7 @@ function transformedAccuWeatherTemp12HoursFunc(accuWeatherData12Hours) {
         transformedTemperaturesdegF.push(HourForecast?.Temperature.Value);
         transformedTemperaturesdegC.push(transformDegFtoDegC(HourForecast?.Temperature.Value));
     });
+
     return {
         transformedHours,
         transformedTemperaturesdegF,

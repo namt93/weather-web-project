@@ -1,0 +1,40 @@
+.compass {
+    position: relative;
+
+    &:before {
+        font-weight: bold;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        content: 'N';
+        font-size: 12px;
+        top: 4px;
+    }
+
+    .arrow {
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        &:after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid red;
+            position: absolute;
+            top: -4px;
+            left: 26px;
+        }
+    }
+}
+
+.direction-value {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 19px;
+}

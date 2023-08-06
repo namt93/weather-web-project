@@ -18,13 +18,14 @@ import SegmentedProgressBar from '~/components/Bar/SegmentedProgressBar';
 import { ForecastLineChart } from '~/components/Chart/LineChart';
 import Menu from '~/components/Popper/Menu';
 import Sidebar, { SidebarRight } from '~/components/Layout/DefaultLayout/Sidebar';
+import WindCompass from '~/components/WindCompass';
 
 const cx = classNames.bind(styles);
 
 // const of weather
-const humStates = ['dry', 'normal', 'wet'];
+// const humStates = ['dry', 'normal', 'wet'];
+// const chanseRainStates = ['0-25%', '26-50%', '51-75%', '76-100%'];
 const tempStates = ['cold', 'normal', 'hot'];
-const chanseRainStates = ['0-25%', '26-50%', '51-75%', '76-100%'];
 const rainCumulativeStates = ['0-7mm', '8-25mm', '26-50mm', '51-100mm'];
 
 const tempStopNumbers = [10, 30, 45];
@@ -39,20 +40,26 @@ const TEMPERATURE_UNITS = [
 ];
 const TIME_INTERVALS = [{ title: '5 days' }, { title: '12 hours' }];
 
+const WEATHER_PROPERTIES = [
+    { title: 'Temperature' },
+    { title: 'Wind Speed (m/s)' },
+    { title: 'Visibility' },
+    { title: 'Rain (mm)' },
+];
+
 function Dashboard() {
-    const [tempDisplay, setTempDisplay] = useState(0);
     const [record, setRecord] = useState({});
-    const [tempUnitState, setTempUnitState] = useState('C');
+    const [weatherPropertyState, setWeatherPropertyState] = useState('Temperature');
     const [intervalState, setIntervalState] = useState('5 days');
 
     var lineChartState = {
-        tempUnitState,
+        weatherPropertyState,
         intervalState,
     };
 
     // Get lastest record of station
     const getRecord = () => {
-        fetch(`http://localhost:8000/api/records/latest/station/9`)
+        fetch(`http://localhost:8000/api/records/latest/station/1`)
             .then((res) => res.json())
             .then((res) => {
                 setRecord(res);
@@ -84,6 +91,8 @@ function Dashboard() {
         return currentState;
     };
 
+    const visbilityComplete = record?.visibility_max / 10;
+
     const temperatureState = calculateStateProperty(record.temperature, tempStopNumbers, tempStates);
     // const visbilityState = calculateStateProperty(record.visbility, humStopNumbers, humStates);
 
@@ -106,15 +115,20 @@ function Dashboard() {
                                     <FontAwesomeIcon icon={faWind} />
                                 </i>
                             </div>
-                            <div className={cx('wind-speed-display')}>
-                                <SemiCircleProgress
-                                    stroke={'var(--main-color)'}
-                                    percentage={record.average_wind_speed ? record.average_wind_speed : 15}
-                                    diameter={160}
-                                />
+                            <div className={cx('wind-display')}>
+                                <div className={cx('wind-speed-display')}>
+                                    <SemiCircleProgress
+                                        stroke={'blue'}
+                                        percentage={record.wind_speed_max ? record.wind_speed_max : 15}
+                                        diameter={160}
+                                    />
+                                </div>
+                                <div className={cx('wind-direction')}>
+                                    <WindCompass value={record.wind_direction_at_max} />
+                                </div>
                             </div>
                             <div className={cx('property-value', 'wind-speed-value')}>
-                                <h2>{record.average_wind_speed ? record.average_wind_speed : 15}km/h</h2>
+                                <div>{record.wind_speed_max ? record.wind_speed_max : 15}m/s</div>
                             </div>
                         </div>
                     </div>
@@ -137,35 +151,12 @@ function Dashboard() {
                                 <SegmentedProgressBar
                                     completed={record.temperature ? record.temperature : 30}
                                     stopNumbers={tempStopNumbers}
-                                    colors={['#6df060', '#eff020', '#f22822']}
+                                    colors={['rgb(0,150,1)', 'rgb(210,210,0)', 'rgb(200, 100, 20)']}
                                     states={tempStates}
                                 />
                             </div>
                         </div>
                     </div>
-                    {/* <div className={(cx('details-property'), cx('grid-item'))}>
-                        <div className={cx('property-content')}>
-                            <div className={cx('property-name')}>
-                                <div className={cx('property-title')}>Visibility</div>
-    
-                                <i className={cx('property-icon')}>
-                                    <FontAwesomeIcon icon={faDroplet} />
-                                </i>
-                            </div>
-                            <div className={cx('property-value')}>
-                                <h2>{record.visbility}m</h2>
-                                <div className={cx('property-state')}>{visbilityState}</div>
-                            </div>
-                            <div className={cx('property-display')}>
-                                <SegmentedProgressBar
-                                    completed={record.visbility}
-                                    stopNumbers={humStopNumbers}
-                                    colors={['var(--main-color)', 'var(--main-color)', 'var(--main-color)']}
-                                    states={humStates}
-                                />
-                            </div>
-                        </div>
-                    </div> */}
                     <div className={(cx('details-property'), cx('grid-item'))}>
                         <div className={cx('property-content')}>
                             <div className={cx('property-name')}>
@@ -175,67 +166,37 @@ function Dashboard() {
                                     <FontAwesomeIcon icon={faWater} />
                                 </i>
                             </div>
-                            <div className={cx('property-value')}>
-                                <h2>{record.visbility}m</h2>
+                            <div className={cx('visibility-value')}>
+                                <h2>{!!record.visibility_max ? record.visibility_max : 1000}m</h2>
+                                <h4 className={cx('visibility-min-value')}>
+                                    {!!record.visibility_min ? record.visibility_min : 20}m
+                                </h4>
                             </div>
-                            <ProgressBar completed={record.visbility} />
+                            <div className={cx('visibility-display')}>
+                                <ProgressBar completed={visbilityComplete ? visbilityComplete : 98} color="blue" />
+                            </div>
                         </div>
                     </div>
-                    {/* <div className={(cx('details-property'), cx('grid-item'))}>
-                        <div className={cx('property-content')}>
-                            <div className={cx('property-name')}>
-                                <div className={cx('property-title')}>Chanse rain</div>
-    
-                                <i className={cx('property-icon')}>
-                                    <FontAwesomeIcon icon={faCloudShowersHeavy} />
-                                </i>
-                            </div>
-                            <div className={cx('property-value')}>
-                                <h2>42%</h2>
-                            </div>
-                            <div className={cx('property-display')}>
-                                <SegmentedProgressBar
-                                    completed={42}
-                                    stopNumbers={chanseRainStopNumbers}
-                                    colors={[
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                    ]}
-                                    states={chanseRainStates}
-                                />
-                            </div>
-                        </div>
-                    </div> */}
                     <div className={(cx('details-property'), cx('grid-item'))}>
                         <div className={cx('property-content')}>
                             <div className={cx('property-name')}>
-                                <div className={cx('property-title')}>Rain Cumulative</div>
+                                <div className={cx('property-title')}>Rain</div>
 
                                 <i className={cx('property-icon')}>
                                     <FontAwesomeIcon icon={faCloudRain} />
                                 </i>
                             </div>
                             <div className={cx('property-value')}>
-                                <h2>24mm</h2>
+                                <h2>{record.rain_per_min ? record.rain_per_min : 0}mm</h2>
+                                <h4 className={cx('rain-cumulative-value')}>
+                                    {record.rain_cumulative ? record.rain_cumulative : 0}mm
+                                </h4>
                             </div>
                             <div className={cx('property-display')}>
                                 <SegmentedProgressBar
-                                    completed={24}
+                                    completed={record.rain_cumulative}
                                     stopNumbers={rainCumulativeStopNumbers}
-                                    colors={[
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                        'var(--main-color)',
-                                    ]}
+                                    colors={['blue', 'blue', 'blue', 'blue']}
                                     states={rainCumulativeStates}
                                 />
                             </div>
@@ -244,13 +205,17 @@ function Dashboard() {
                 </div>
 
                 {/* Weather forecast section */}
-                <h2 className={cx('today-details--title')}>Weather forecast</h2>
+                <div className={cx('today-details--title')}>Weather Analysis</div>
                 <div className={cx('weather-forecast')}>
                     <div className={cx('weather-forecast-actions')}>
                         <div>
-                            <Menu items={TEMPERATURE_UNITS} sizeList="size-list-small" onChange={setTempUnitState}>
+                            <Menu
+                                items={WEATHER_PROPERTIES}
+                                sizeList="size-list-small-2"
+                                onChange={setWeatherPropertyState}
+                            >
                                 <button className={cx('forecast-actions-item')}>
-                                    <div className={cx('forecast-actions-item-title')}>&deg;{tempUnitState}</div>
+                                    <div className={cx('forecast-actions-item-title')}>{weatherPropertyState}</div>
                                     <FontAwesomeIcon icon={faCaretDown} />
                                 </button>
                             </Menu>
@@ -269,7 +234,7 @@ function Dashboard() {
             </div>
 
             <div className={cx('col-sm-2')}>
-                <SidebarRight sidebarColor="#121010" tempDisplay={tempDisplay}></SidebarRight>
+                <SidebarRight sidebarColor="#121010" tempDisplay={record.temperature}></SidebarRight>
             </div>
         </div>
     );

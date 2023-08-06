@@ -10,27 +10,27 @@ function DefaultLayout({ children }) {
     // const [tempDisplay, setTempDisplay] = useState(0);
 
     // Get lastest record of station
-    const getTempDisplay = () => {
-        fetch(`http://localhost:8000/api/records/latest/station/9`)
-            .then((res) => res.json())
-            .then((res) => {
-                // setTempDisplay(res?.temperature);
-            })
-            .catch(() => {
-                console.log('Error fetch');
-            });
-    };
+    // const getTempDisplay = () => {
+    //     fetch(`http://localhost:8000/api/records/latest/station/1`)
+    //         .then((res) => res.json())
+    //         .then((res) => {
+    //             // setTempDisplay(res?.temperature);
+    //         })
+    //         .catch(() => {
+    //             console.log('Error fetch');
+    //         });
+    // };
 
     // Every 3s
-    useEffect(() => {
-        const timerId = setInterval(() => {
-            getTempDisplay();
-        }, 3000);
+    // useEffect(() => {
+    //     const timerId = setInterval(() => {
+    //         getTempDisplay();
+    //     }, 3000);
 
-        return () => {
-            clearInterval(timerId);
-        };
-    }, []);
+    //     return () => {
+    //         clearInterval(timerId);
+    //     };
+    // }, []);
 
     return (
         <div className={cx('wrapper')}>

@@ -10,14 +10,7 @@
     overflow: hidden;
 
     &:hover {
-        // transition: 300ms;
-        // width: calc(var(--sidebar-width) - 28px);
         z-index: 1;
-
-        // .sidebar-item-title,
-        // .name-app {
-        //     padding: 0;
-        // }
     }
 }
 
@@ -92,8 +85,8 @@
 // Sidebar right section
 .sidebar-right {
     color: var(--white-color);
-    // position: fixed;
-    // right: 0;
+    position: fixed;
+    right: 0;
     height: 100%;
     width: calc(var(--sidebar-right-width) + 30px);
     box-shadow: 3px 0px 10px 1px rgba(36, 139, 242, 0.4);
@@ -105,31 +98,25 @@
     border-bottom: 1px solid rgba(225, 225, 225, 0.1);
 }
 
-.sidebar-right-city,
-.sidebar-right-clock {
-    font-size: 24px;
-    position: fixed;
-}
-
 .sidebar-right-city {
     font-size: 24px;
     position: fixed;
     top: 106px;
-    right: 93px;
+    right: 88px;
 }
 
 .sidebar-right-clock {
     font-size: 22px;
-    position: relative;
-    top: 80px;
-    left: 94px;
+    position: fixed;
+    top: 140px;
+    right: 106px;
 }
 
 .sidebar-right-temperature {
     font-size: 48px;
-    position: relative;
-    top: 100px;
-    left: 127px;
+    position: fixed;
+    top: 196px;
+    right: 104px;
     display: flex;
 }
 
