@@ -30,10 +30,10 @@ function Search() {
         }
 
         setLoading(true);
-        fetch(`http://localhost:8000/api/search?q=${encodeURIComponent(searchValueDebounced)}`)
+        fetch(`http://localhost:8000/api/search/?q=${encodeURIComponent(searchValueDebounced)}`)
             .then((res) => res.json())
             .then((res) => {
-                setSearchResult(res.data);
+                setSearchResult(res);
                 setLoading(false);
             })
             .catch(() => {
@@ -55,12 +55,12 @@ function Search() {
         <div className={cx('wrapper', 'col-sm-6', 'offset-sm-2')}>
             <HeadlessTippy
                 interactive
-                visible={showSearchResult && searchResult.length > 0}
+                visible={showSearchResult && searchResult?.length > 0}
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-                            {searchResult.length > 0 &&
+                            {searchResult?.length > 0 &&
                                 searchResult.map((result) => <AccountItem key={result.user_id} data={result} />)}
                         </PopperWrapper>
                     </div>
